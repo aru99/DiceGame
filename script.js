@@ -14,6 +14,15 @@ const btnHold = document.querySelector('.btn--hold');
 const player0El = document.querySelector('.player--0');
 const player1El = document.querySelector('.player--1');
 
+//functions
+
+const switchPlayer = function () {
+  document.querySelector(`#current--${activePlayer}`).textContent = 0;
+  activePlayer = activePlayer === 0 ? 1 : 0;
+  currentScore = 0;
+  player0El.classList.toggle('player--active');
+  player1El.classList.toggle('player--active');
+};
 //starting conditions
 score0El.textContent = 0;
 score1El.textContent = 0;
@@ -45,10 +54,25 @@ btnRoll.addEventListener('click', function () {
     document.querySelector(`#current--${activePlayer}`).textContent =
       currentScore;
   } else {
-    document.querySelector(`#current--${activePlayer}`).textContent = 0;
-    activePlayer = activePlayer === 0 ? 1 : 0;
-    currentScore = 0;
-    player0El.classList.toggle('player--active');
-    player1El.classList.toggle('player--active');
+    switchPlayer();
   }
+});
+
+//HOLD button eventlistner
+btnHold.addEventListener('click', function () {
+  /**
+   *  todo:
+   * 1. Add current score to active player's score
+   * 2. check if player score is >=100
+   * finish the game, else switch to the next player
+   */
+
+  //1
+  scores[activePlayer] += currentScore;
+  document.querySelector(`#score--${activePlayer}`).textContent =
+    scores[activePlayer];
+  //2
+
+  //3.switch the player
+  switchPlayer();
 });
