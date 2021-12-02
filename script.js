@@ -13,6 +13,28 @@ const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 const player0El = document.querySelector('.player--0');
 const player1El = document.querySelector('.player--1');
+let scores, currentScore, activePlayer, playing;
+//resetting the game function
+const init = function () {
+  //starting conditions
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  playing = true;
+  //
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  currentScore0El.textContent = 0;
+  currentScore1El.textContent = 0;
+  //
+  diceEl.classList.add('hidden');
+  player1El.classList.remove('player--winner');
+  player0El.classList.remove('player--winner');
+  player0El.classList.add('player--active');
+  player1El.classList.remove('player--active');
+};
+
+init();
 
 //functions
 
@@ -23,15 +45,6 @@ const switchPlayer = function () {
   player0El.classList.toggle('player--active');
   player1El.classList.toggle('player--active');
 };
-//starting conditions
-score0El.textContent = 0;
-score1El.textContent = 0;
-diceEl.classList.add('hidden');
-
-const scores = [0, 0];
-let currentScore = 0;
-let activePlayer = 0;
-let playing = true;
 //Event listener for roll button
 btnRoll.addEventListener('click', function () {
   /*todo:
@@ -76,7 +89,7 @@ btnHold.addEventListener('click', function () {
     document.querySelector(`#score--${activePlayer}`).textContent =
       scores[activePlayer];
     //2check if the score is >=100
-    if (scores[activePlayer] >= 20) {
+    if (scores[activePlayer] >= 30) {
       //finish the game
       playing = false;
       document
@@ -93,3 +106,25 @@ btnHold.addEventListener('click', function () {
     }
   }
 });
+
+// New game button Event listener
+/**
+ * todo: reset current scores, active class to player 0, dice should be visible again
+ */
+
+btnNew.addEventListener(
+  'click',
+  init
+  //   player0El.classList.add('player--active');
+  //   player1El.classList.remove('player--active');
+  //   document
+  //     .querySelector(`.player--${activePlayer}`)
+  //     .classList.remove('player--winner');
+  //   currentScore = 0;
+  //   (currentScore0El.textContent = currentScore),
+  //     (currentScore1El.textContent = currentScore);
+  //   document.querySelector(`#score--0`).textContent = currentScore;
+  //   document.querySelector(`#score--1`).textContent = currentScore;
+  //   (scores[0] = currentScore), (scores[1] = currentScore);
+  //   console.log(scores);
+);
