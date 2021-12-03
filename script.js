@@ -128,3 +128,4 @@ btnNew.addEventListener(
   //   (scores[0] = currentScore), (scores[1] = currentScore);
   //   console.log(scores);
 );
+/
